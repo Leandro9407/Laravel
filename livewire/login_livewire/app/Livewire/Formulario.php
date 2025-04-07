@@ -43,13 +43,19 @@ class Formulario extends Component
     }
 
     public function save()
+    
     {
 
-    $post=Post::create(
-        $this->only('category_id', 'title', 'content')
-    );
+    $post=Post::create([
+        /* $this->only('category_id', 'title', 'content') */
+        'category_id' => $this->postCreate['category_id'],
+        'title' => $this->postCreate['title'],
+        'content' => $this->postCreate['content'],
+    ]);
 
-    $post->tags()->attach($this->selectedTags);
+    
+
+    $post->tags()->attach($this->selectTags);
 
     $this->reset(['category_id', 'title', 'content', 'selectedTags']);
 
@@ -93,7 +99,11 @@ class Formulario extends Component
 
     public function render()
     {
-        return view('livewire.formulario');
+        return view('livewire.formulario', [
+            'categories' => $this->categories,
+            'tags' => $this->tags,
+            'posts' => $this->posts,
+        ]);
     }
 
 }
