@@ -57,8 +57,9 @@ class Formulario extends Component
 
     $post->tags()->attach($this->selectTags);
 
-    $this->reset(['category_id', 'title', 'content', 'selectedTags']);
-
+    $this->reset(['postCreate', 'selectTags']);
+/*     $this->reset(['category_id', 'title', 'content', 'selectedTags']);
+ */
     $this->posts = Post::all();
 
     }

@@ -1,29 +1,29 @@
 <div>
     <div class="bg-white shadow rounded-lg p-6 mb-8">
-        <form wire:submit="save">
+        <form wire:submit.prevent="save">
             <div class="mb-4">
                 <x-label>
                     Nombre
                 </x-label>
-                <x-input class="w-full" wire:model="title"></x-input>
+                <x-input class="w-full" wire:model="postCreate.title"></x-input>
 
-                <x-input-error for="title"/>
+                <x-input-error for="postCreate.title"/>
 
             </div>
 
             <div>
                 <x-label>
                     Contenido
-                <x-label>
-                <x-textarea class="w-full" wire:model="content"></x-textarea>
-                <x-input-error for="content"/>
+                </x-label>
+                <x-textarea class="w-full" wire:model="postCreate.content"></x-textarea>
+                <x-input-error for="postCreate.content"/>
                 <div>
                     <x-label>
                         Categoria
                     </x-label>
-                    <x-select class="w-full" wire:model="catagory_id">
+                    <x-select class="w-full" wire:model="postCreate.category_id">
                         
-                        <option value="">disable
+                        <option value="" disabled>
                             Selecione una categoria
                         </option>
                         
@@ -31,20 +31,20 @@
                         <option value="{{$category->id}}">{{$category->name}}</option>        
                         @endforeach
                     </x-select>
-                    <x-input-error for="category_id"/>
-                    <div class="mb-4"></div>
+                    <x-input-error for="postCreate.category_id"/>
+                    <div class="mb-4">
                         <x-label>
                             Etiquetas
                         </x-label>
                         <ul>
                             @foreach ($tags as $tag)
                             <li>
-                                <x-checkbox wire:model="selectedTags" value="{{$tag->id}}"/>
+                                <x-checkbox wire:model="selectTags" value="{{$tag->id}}"/>
                                     {{$tag->name}}
                             </li>
                             @endforeach
                         </ul>
-                        <x-unput-error for="selectTags"/>
+                        <x-input-error for="selectTags"/>
                     </div>
                     <div class="flex justify-end">
                         <x-button>
@@ -79,9 +79,10 @@
     {{-- formulario de edicion --}}
 
     <form wire:submit="update">
-    <x-dialog-modal wire:modal="open">
+    <x-dialog-modal wire:model="open">
+   |  
         <x-slot name="title">
-            Crear nuevo post-
+            Crear nuevo post
         </x-slot>
         <x-slot name="content">
             
@@ -143,7 +144,7 @@
                 </x-button>
             </div>   
         </x-slot>            
-            
+          
     </x-dialog-modal>
     </form>
 </div>
