@@ -13,12 +13,12 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        Tag::create(['nombre' => 'Nuevo']);
-        Tag::create(['nombre' => 'Popular']);
-        Tag::create(['nombre' => 'Oferta']);
-        Tag::create(['nombre' => 'Edición Limitada']);
-        Tag::create(['nombre' => 'Recomendado']);
+        Tag::create(['nombre' => 'Actualidad']);
         Tag::create(['nombre' => 'Tendencia']);
-        Tag::create(['nombre' => 'Más Vendido']);
+        Tag::create(['nombre' => 'Opinión']);
+        Tag::create(['nombre' => 'Análisis']);
+        Tag::create(['nombre' => 'Entrevistas']);
+        Tag::create(['nombre' => 'Internacional']);
+        Tag::create(['nombre' => 'Destacado']);
     }
 }
